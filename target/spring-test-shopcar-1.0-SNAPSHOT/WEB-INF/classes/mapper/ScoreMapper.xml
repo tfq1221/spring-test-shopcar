@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qf.tian.mapper.ScoreMapper">
+
+<update id="updateScoreBySign">
+    INSERT INTO t_score(score_type, score_size, score_member_id) VALUES
+    (#{scoreType},#{scoreSize},#{scoreMemberId})
+    </update>
+</mapper>

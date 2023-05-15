@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--操作 user 表的 Mapper 文件就叫 UserMapper-->
+<!--由于我们的项目中会存在多个不同的 Mapper 文件，不同的 Mapper 文件操作不同的表，不同的 Mapper 文件中的具体操作可能会重复，所以每一个 Mapper 文件首先要取一个独一无二的 namespace -->
+<mapper namespace="com.qf.tian.mapper.SignMapper">
+
+<insert id="insertSign">
+    insert into t_sign ( sign_member_id)
+    values (#{signMemberId});
+    </insert>
+</mapper>

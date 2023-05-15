@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >-->
+<!--        <property name="dataSource" ref="dataSource"/>-->
+<!--        <property name="typeAliasesPackage" value="com.qf.tian.entity"/>-->
+<!--        <property name="mapperLocations" value="classpath:mapper"/>-->
+<!--        <property name="configuration" value="classpath:mybatis-spring.xml"/>
+                configuration错误
+               应为configLocation -->
+
+<!--    </bean>-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="typeAliasesPackage" value="com.qf.tian.entity"/>
+        <property name="mapperLocations" value="classpath:mapper/**/*.xml"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+        p:basePackage="com.qf.tian.mapper"
+          p:sqlSessionFactoryBeanName="sqlSessionFactory"
+   />
+
+<!--   配置：只需注入两个bean。sql工厂对象，映射扫描配置器
+            1.sqlSessionFactoryBean注入容器
+                (1)引用配置好的数据源作为bean的属性
+                (2)使mapper.xml中返回的实体不需要加包名。typeAliasesPackage类型别名包
+                (3)指定mapper.xml文件的位置
+                (4)指定mybatis配置文件的位置
+            2.MapperScannerConfigurer注入容器
+                (1)配置mapper扫描器扫描的包
+                (2)将sqlSessionFactorybean作为属性注入mapper扫描配置器-->
+</beans>

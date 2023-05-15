@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--操作 user 表的 Mapper 文件就叫 UserMapper-->
+<!--由于我们的项目中会存在多个不同的 Mapper 文件，不同的 Mapper 文件操作不同的表，不同的 Mapper 文件中的具体操作可能会重复，所以每一个 Mapper 文件首先要取一个独一无二的 namespace -->
+<mapper namespace="com.qf.tian.mapper.ShopcarMapper">
+<!--<resultMap id="GoodsMap" type="Goods">-->
+<!--    <id property="goodId" column="good_id"/>-->
+<!--    <result property="goodParentId" column="good_parent_id"/>-->
+<!--    <result property="goodName" column="good_name"/>-->
+<!--    <result property="goodSort" column="good_sort"/>-->
+<!--    <result property="isShow" column="is_show"/>-->
+<!--    <result property="createTime" column="create_time"/>-->
+<!--    <result property="updateTime" column="update_time"/>-->
+<!--</resultMap>-->
+    <resultMap id="Shopcar" type="Shopcar">
+        <id property="shopcarId" column="shopcar_id"/>
+        <result property="shopcarMemberId" column="shopcar_member_id"/>
+        <result property="shopcarGoodsId" column="shopcar_goods_id"/>
+        <result property="shopcarGoodsNumber" column="shopcar_goods_number"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+<insert id="insertShopcar">
+    INSERT INTO t_shopcar(shopcar_member_id, shopcar_goods_id, shopcar_goods_number) VALUES
+    (#{shopcarMemberId},#{shopcarGoodsId},#{shopcarGoodsNumber})
+
+    </insert>
+
+<select id="selectShopcarByMemberId" resultMap="Shopcar">
+        SELECT shopcar_id, shopcar_member_id, shopcar_goods_id, shopcar_goods_number, status, create_time, update_time FROM t_shopcar where shopcar_member_id=#{shopcarByMemberId}
+    </select>
+
+<select id="selectPrice" resultType="float">
+    select price
+    from t_goods WHERE good_id=#{goodId};
+    </select>
+</mapper>
